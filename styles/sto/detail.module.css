@@ -1,0 +1,65 @@
+.preTitle {
+    font-size : 12px;
+    color : #898989;
+    font-weight: 500;
+
+}
+
+.title {
+    font-size : 32px;
+    font-weight: 400;
+    color : #000000;
+    margin-bottom: 20px;
+     display: flex;
+}
+.container {
+    margin-top : 20px;
+    display: flex;
+    gap : 20px;
+}
+
+.subject {
+    margin : auto 0;
+    font-size: 24px;
+}
+
+.status {
+    background-color: #64CA77;
+    color : white;
+    margin : auto;
+    border-radius: 8px;
+    padding : 10px 20px;
+}
+
+.text {
+    color : #524342;
+}
+
+.statusTitle {
+    font-size: 12px;
+}
+
+.statusLastest {
+    font-size : 16px;
+    font-weight: 700;
+    text-align: right;
+}
+.statusLastestTime {
+    font-size : 14px;
+}
+
+.statusTime {
+    font-size: 12px;
+    color : #747775;
+}
+
+.statusText {
+    font-size: 12px;
+    text-align: right;
+    color : #747775;
+}
+
+.price {
+    font-size: 24px;
+    color : #AF212E;
+}
