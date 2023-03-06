@@ -1,0 +1,33 @@
+.number {
+    border-radius: 100%;
+    border  : none;
+    padding : 2px;
+    background-color: #FFFFFF;
+    color : #C8C8C8;
+    width: 42px;
+    height: 42px;
+    font-size: 24px;
+}
+
+.enabled {
+    border  : 2px solid #AF212E;
+    background-color: #FFDAD8;
+    color : #B42531;
+}
+
+.filled {
+    color : #AF212E;
+    background-color: #AF212E;
+}
+
+.filled h1 {
+    color : white;
+}
+
+.desc {
+    position: absolute;
+    font-size: 11px;
+    text-align: center;
+    margin-top : 10px;
+    margin-left: 5px;
+}

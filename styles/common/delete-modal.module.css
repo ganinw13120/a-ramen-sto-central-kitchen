@@ -1,0 +1,26 @@
+
+.footer {
+    margin-top : 20px;
+    gap : 5px;
+    display: flex;
+}
+
+.title {
+    margin : auto;
+    font-size: 24px;
+    font-weight: 400;
+    color : #BA1A1A;
+    text-align: center;
+    margin-top: 10px;
+}
+
+.text {
+    margin-top : 15px;
+    font-size: 14px;
+    font-weight: 400;
+    color : #49454F;
+}
+
+.name {
+    font-weight: 600;
+}

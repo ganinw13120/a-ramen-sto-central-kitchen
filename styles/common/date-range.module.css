@@ -1,0 +1,14 @@
+.btn {
+    color : #524342;
+    border-radius: 100px;
+    border: 1px solid #C8C8C8;
+    height: 48px;
+    width: 100px;
+    padding : 0 20px;
+    padding-right: 5px;
+    text-align: left;
+}
+
+.date {
+    font-size : 10px;
+}

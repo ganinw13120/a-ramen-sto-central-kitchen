@@ -1,0 +1,8 @@
+.container {
+    border-radius: 50px;
+    height: 48px;
+    width: 322px;
+    border: 1px solid #C8C8C8;
+    background: url(/search.svg) no-repeat scroll 20px 14px;
+    padding-left: 50px;
+}

@@ -1,0 +1,31 @@
+.export {
+    display: flex;
+    color : #1C1B1F;
+}
+
+.count {
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.modalContent {
+    padding-bottom: 10px;
+    border-bottom: 1px solid #CAC4D0;
+}
+
+.footer {
+    margin-top : 20px;
+    gap : 5px;
+    display: flex;
+}
+
+.disabled {
+    color : #C8C8C8;
+}
+
+.status {
+    color : white;
+    background-color: #64CA77;
+    padding : 5px;
+    border-radius: 8px;
+}

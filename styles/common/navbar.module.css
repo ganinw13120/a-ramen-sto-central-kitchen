@@ -1,0 +1,68 @@
+.container {
+    padding: 20px;
+    display: flex;
+}
+
+.wrapper {
+    /* height: 60px; */
+    /* padding-bottom: 20px; */
+    border-bottom: 1px solid #C8C8C8;
+}
+
+.separetor {
+    margin : auto;
+    height: 25px;
+    border-left: 1px solid #524342;
+    margin-right: 15px;
+    margin-left: 15px;
+}
+
+.name {
+    background-color: white;
+    margin : auto;
+    border-radius: 100px;
+    padding : 10px 20px;
+}
+
+.popupContainer {
+    font-weight: 500;
+    font-size: 14px;
+
+    width: 220px;
+    text-align: center;
+    margin-top: 10px;
+}
+
+.email {
+    font-size: 11px;
+    color : #C8C8C8;
+}
+
+.outlineBtn {
+    margin-top : 10px;
+    border-radius: 100px;
+    width: 180px;
+    height: 40px;
+    border : 1px solid #524342;
+    color : #524342;
+}
+
+.btn {
+    width: 180px;
+    height: 40px;
+    color : #AF212E;
+}
+
+.appname {
+    font-size: 20px;
+    font-weight: 500;
+    margin : auto;
+}
+
+.appmodule {
+    font-size: 600;
+    color : #747474;
+    font-size: 14px;
+    margin : auto;
+    margin-left: 10px;
+}
