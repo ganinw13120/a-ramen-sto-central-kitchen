@@ -1,20 +1,20 @@
 export type STO = {
-    id : number
-    branch : string
-    status : string
-    updatedAt : string
-    createdAt : string
+    id: number
+    branch: string
+    status: string
+    updatedAt: string
+    createdAt: string
 }
 
 export type STOListPayload = {
-    filter : PaginationFilter
-    total : number
-    items : STO[]
+    filter: PaginationFilter
+    total: number
+    items: STO[]
 }
 
 export type PaginationFilter = {
-    skip : number
-    limit : number
+    skip: number
+    limit: number
 }
 
 
@@ -42,10 +42,21 @@ export type OrderedProduct = {
 }
 
 export type STODetail = {
+    branchName: string
     status: string;
     pdf?: string;
     createdAt: string;
     updatedAt: string;
     tracking: Tracking[];
     orderedProducts: OrderedProduct[];
+}
+
+export type EditPayload = {
+    note : string
+    items : EditItemPayload[]
+}
+
+export type EditItemPayload = {
+    productId : number
+    newQuantity : number
 }

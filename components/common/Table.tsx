@@ -8,6 +8,7 @@ import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import CustomSelect from "../common/Select";
 import MenuItem from '@mui/material/MenuItem';
+import DeleteIcon from "assets/common/delete.svg";
 
 import NextIcon from "assets/common/next.svg";
 import LastIcon from "assets/common/last.svg";
@@ -32,6 +33,14 @@ interface TableProps {
     ) => any
 
     onClickItem ?: (id : string) => void
+
+    tag ?: TagItem[]
+}
+
+export type TagItem = {
+    icon : any
+    text : string
+    onDelete : () => void
 }
 
 export type Item = {
@@ -128,6 +137,11 @@ const Table: React.FC<TableProps> = (props: TableProps) => {
             <div className={styles.container}>
                 <div className="flex gap-4">
                     {props.headers?.(onFilterLoad)}
+                </div>
+                <div className="flex gap-4 mt-2.5">
+                    {props.tag?.map(tag=>{
+                        return <Tag icon={tag.icon} text={tag.text} onDelete={tag.onDelete} />
+                    })}
                 </div>
                 <table className="w-full mt-5">
                     <thead className={styles.header}>
@@ -235,3 +249,27 @@ const Table: React.FC<TableProps> = (props: TableProps) => {
 };
 
 export default Table;
+
+interface TagProps {
+    icon: any
+    text: string
+    onDelete?: () => void
+}
+
+const Tag: React.FC<TagProps> = (props: TagProps) => {
+    return (
+        <>
+            <div className={styles.tag}>
+                <div className="my-auto">
+                    <Image src={props.icon} alt="icon" className="m-auto" width={15} height={15} priority={false} />
+                </div>
+                <span className={styles.tagText}>
+                    {props.text}
+                </span>
+                <div className="my-auto cursor-pointer" onClick={props.onDelete}>
+                    <Image src={DeleteIcon} alt="icon" className="m-auto" width={7} height={7} priority={false} />
+                </div>
+            </div>
+        </>
+    )
+}

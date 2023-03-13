@@ -1,5 +1,5 @@
 import axios from "axios";
-import { STODetail, STOListPayload } from "../models/STO";
+import { EditPayload, STODetail, STOListPayload } from "../models/STO";
 import { commonHeader } from "./Authentication";
 
 export const GetSTOList = async (token : string, page : number, pageSize : number, sortBy ?: string, filter ?: string): Promise<STOListPayload> => {
@@ -18,6 +18,36 @@ export const GetSTODetail = async (token : string, id : string): Promise<STODeta
 
 export const GetStatuses = async (token : string): Promise<Array<string>> => {
     const res = await axios.get(process.env.API_BASE_URL + '/api/v1/ck/statuses', {
+        headers : commonHeader(token)
+    })
+    return res.data;
+}
+
+export const Reject = async (token : string, id : string): Promise<STODetail> => {
+    const res = await axios.patch(process.env.API_BASE_URL + `/api/v1/ck/stos/${id}/reject`, {
+        reason : "Reject!"
+    }, {
+        headers : commonHeader(token)
+    })
+    return res.data;
+}
+
+export const Approve = async (token : string, id : string): Promise<STODetail> => {
+    const res = await axios.patch(process.env.API_BASE_URL + `/api/v1/ck/stos/${id}/approve`, {
+        headers : commonHeader(token)
+    })
+    return res.data;
+}
+
+export const Edit = async (token : string, id : string, req : EditPayload): Promise<STODetail> => {
+    const res = await axios.patch(process.env.API_BASE_URL + `/api/v1/ck/stos/${id}`, req, {
+        headers : commonHeader(token)
+    })
+    return res.data;
+}
+
+export const GetPDF = async (token : string, id : string): Promise<STODetail> => {
+    const res = await axios.patch(process.env.API_BASE_URL + `/api/v1/ck/stos/${id}/pdf`, {
         headers : commonHeader(token)
     })
     return res.data;
