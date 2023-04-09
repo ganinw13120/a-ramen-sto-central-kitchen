@@ -5,7 +5,7 @@ import Sidebar from '../../../../components/common/Sidebar'
 import NavBar from '../../../../components/common/NavBar'
 import Button from '../../../../components/common/Buttont'
 import ExportIcon from "assets/repairs/export.svg";
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 
 import { GetServerSideProps, NextPage } from 'next'
 import { AuthPayload } from '../../../../models/Authentication'
@@ -76,17 +76,36 @@ const Home: NextPage<HomeProps> = (props: HomeProps) => {
             console.error(err);
         }
     }
-    const onReject = async () => {
+    const onReject = async (reason : string) => {
+        if (!reason) {
+            alert("กรุณากรอกหมายเหตุ")
+            return;
+        }
         try {
-            await Reject(props.auth.token, router.query.id as string);
+            await Reject(props.auth.token, router.query.id as string, reason);
             router.reload();
         } catch (err) {
             console.error(err);
         }
     }
+
+    const ref = useRef(null);
     const onExport = async () => {
         try {
             const res = await GetPDF(props.auth.token, router.query.id as string);
+            let url = window.URL.createObjectURL(res) as string;
+            url = url.replace('blob:', '')
+            const link = document.createElement('a');
+            link.href = url;
+            link.setAttribute(
+            'download',
+            `ใบคำสั่งซื้อ.pdf`,
+            );
+
+            document.body.appendChild(link);
+
+            link.click();
+
         } catch (err) {
             console.error(err);
         }
@@ -100,6 +119,7 @@ const Home: NextPage<HomeProps> = (props: HomeProps) => {
                 <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
                     rel="stylesheet" />
             </Head>
+            <a className="d-none" target="_blank" ref={ref}></a>
             <div className='min-h-screen flex flex-col'>
                 <NavBar profile={props.auth.profile} />
                 <div className='flex-grow flex bg-bg min-h-full min-w-screen'>
@@ -217,20 +237,20 @@ const Home: NextPage<HomeProps> = (props: HomeProps) => {
             </div>
             {
                 modal && <DeleteModal
-                    action={`${modal === "Reject" ? "ปฏิเสธ" : "อนุมัติ"}`}
+                    action={`${modal === "Reject" ? "ปฏิเสธใบสั่งซื้อหมายเลข" : "อนุมัติใบสั่งซื้อหมายเลข"}`}
                     text={`${router.query.id}`}
                     color={`${modal === "Reject" ? "FFDAD8" : "64CA77"}`}
                     fontColor={`${modal === "Reject" ? "AF212E" : "FFFFFF"}`}
                     titleColor={`${modal === "Reject" ? "AF212E" : "64CA77"}`}
                     onClose={() => setModal(null)}
                     icon={modal === "Reject" ? CrossIcon : TickIcon}
-                    onSubmit={() => {
+                    onSubmit={(reason) => {
                         switch (modal) {
                             case "Approve":
                                 onApprove()
                                 break
                             case "Reject":
-                                onReject()
+                                onReject(reason??"")
                                 break
                         }
                     }}

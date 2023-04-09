@@ -23,9 +23,9 @@ export const GetStatuses = async (token : string): Promise<Array<string>> => {
     return res.data;
 }
 
-export const Reject = async (token : string, id : string): Promise<STODetail> => {
+export const Reject = async (token : string, id : string, reason : string): Promise<STODetail> => {
     const res = await axios.patch(process.env.API_BASE_URL + `/api/v1/ck/stos/${id}/reject`, {
-        reason : "Reject!"
+        reason : reason
     }, {
         headers : commonHeader(token)
     })
@@ -33,7 +33,7 @@ export const Reject = async (token : string, id : string): Promise<STODetail> =>
 }
 
 export const Approve = async (token : string, id : string): Promise<STODetail> => {
-    const res = await axios.patch(process.env.API_BASE_URL + `/api/v1/ck/stos/${id}/approve`, {
+    const res = await axios.patch(process.env.API_BASE_URL + `/api/v1/ck/stos/${id}/approve`, {}, {
         headers : commonHeader(token)
     })
     return res.data;
@@ -46,9 +46,9 @@ export const Edit = async (token : string, id : string, req : EditPayload): Prom
     return res.data;
 }
 
-export const GetPDF = async (token : string, id : string): Promise<STODetail> => {
-    const res = await axios.patch(process.env.API_BASE_URL + `/api/v1/ck/stos/${id}/pdf`, {
+export const GetPDF = async (token : string, id : string): Promise<Blob> => {
+    const res = await axios.get(process.env.API_BASE_URL + `/api/v1/ck/stos/${id}/pdf`, {
         headers : commonHeader(token)
     })
-    return res.data;
+    return new Blob([res.data], {type:"application/pdf"})
 }

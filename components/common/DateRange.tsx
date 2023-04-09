@@ -28,7 +28,7 @@ import DateRangePicker from 'react-bootstrap-daterangepicker';
 import 'bootstrap-daterangepicker/daterangepicker.css';
 import moment, { Moment } from "moment";
 import { InputLabel } from "@mui/material";
-import { formatDate } from "../../utils/Date";
+import { formatDate, formatMomentDate } from "../../utils/Date";
 
 interface DateRangeProps {
     onChange : (startDate : moment.Moment, endDate : moment.Moment) => void
@@ -63,7 +63,7 @@ const DateRange: React.FC<DateRangeProps> = (props: DateRangeProps) => {
                         {formatDate(endDate.toISOString())}
                     </div> : "วันที่"
                 } */}
-                วันที่
+                {(startDate && endDate) ? (`${formatMomentDate(startDate.toISOString())} - ${formatMomentDate(endDate.toISOString())}`) : "วันที่"}
                 <div className="flex-grow"></div>
                 <Image src={DropdownIcon} alt="Select" className="mr-4" width={10} height={6} priority={false} />
                 </div>
