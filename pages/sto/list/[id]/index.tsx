@@ -20,7 +20,7 @@ import DeleteModal from '../../../../components/common/Modal'
 
 import CrossIcon from "assets/common/cross.svg";
 import TickIcon from "assets/common/tick.svg";
-
+var FileSaver = require('file-saver');
 const editableStatus = [
     "Sent",
     "Edited"
@@ -92,20 +92,7 @@ const Home: NextPage<HomeProps> = (props: HomeProps) => {
     const ref = useRef(null);
     const onExport = async () => {
         try {
-            const res = await GetPDF(props.auth.token, router.query.id as string);
-            let url = window.URL.createObjectURL(res) as string;
-            url = url.replace('blob:', '')
-            const link = document.createElement('a');
-            link.href = url;
-            link.setAttribute(
-            'download',
-            `ใบคำสั่งซื้อ.pdf`,
-            );
-
-            document.body.appendChild(link);
-
-            link.click();
-
+           await GetPDF(props.auth.token, router.query.id as string);
         } catch (err) {
             console.error(err);
         }
